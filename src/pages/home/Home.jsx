@@ -9,18 +9,38 @@ import { Blog, Travel } from "../../component/blog/Blog";
 import { Post, PostCon } from "../../component/post/Post";
 import "./home.css";
 import { Link } from "react-router-dom";
+import AnimateOnScroll from "../../AnimateOnScroll";
+import { useContext } from "react";
+import { AnimatedContext } from "../../context/AnimateContext";
 
 const Home = () => {
+  const { initialValTop, animateY, initialValLeft, animateX } =
+    useContext(AnimatedContext);
+
   return (
-    <>
-      <div className="hero-img">
-        <div></div>
-        <Hero />
-        <Links />
-      </div>
+    <div
+      style={{
+        overflow: "hidden",
+      }}
+    >
+      <AnimateOnScroll
+        animated={animateY}
+        initialVal={initialValTop}
+        tag={
+          <div className="hero-img">
+            <div></div>
+            <Hero />
+            <Links />
+          </div>
+        }
+      />
       <div className="blog-container">
         <div className="box1">
-          <Post img={img1} linkName="/blog/thirdBlogDetail" />
+          <AnimateOnScroll
+            animated={animateX}
+            initialVal={initialValLeft}
+            tag={<Post img={img1} linkName="/blog/thirdBlogDetail" />}
+          />
         </div>
         <div className="box2">
           <Blog
@@ -32,6 +52,7 @@ const Home = () => {
           />
         </div>
       </div>
+
       <div className="banner"></div>
       <div className="blog-section section-1">
         <Travel
@@ -59,7 +80,7 @@ const Home = () => {
             para={
               "Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition. Organically grow the holistic world view of disruptive innovation via workplace diversity and empowerment."
             }
-            linkName='/blog/secondBlogDetail'
+            linkName="/blog/secondBlogDetail"
           />
         </div>
         <div className="box2">
@@ -74,7 +95,7 @@ const Home = () => {
           }
         />
       </div>
-    </>
+    </div>
   );
 };
 
