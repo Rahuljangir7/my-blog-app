@@ -7,17 +7,25 @@ import {
   FaMapMarkerAlt,
   FaClock,
 } from "react-icons/fa";
+import { useInViewAnimation } from "../../useInViewAnimation";
 
 const Contact = () => {
   const phone = "+919950108143";
   const email = "rahuljangir99501@gmail.com";
   const address = `27.900659, 75.077535`;
 
+  let [left, right, top] = [
+    useInViewAnimation("elementLeft"),
+    useInViewAnimation("elementRight"),
+    useInViewAnimation("elementTop"),
+  ];
   return (
     <div className="contact">
-      <h2>Get in touch</h2>
+      <h2 ref={top.ref} style={{ ...top.style }}>
+        Get in touch
+      </h2>
       <div className="contact-box">
-        <ul className="details">
+        <ul className="details" ref={left.ref} style={{ ...left.style }}>
           <li>
             <a href={`tel:${phone}`}>
               <FaPhoneAlt className="icon" />
@@ -49,7 +57,7 @@ const Contact = () => {
             </a>
           </li>
         </ul>
-        <form>
+        <form ref={right.ref} style={{ ...right.style }}>
           <label htmlFor="name">Name</label>
           <input type="text" placeholder="Name" id="name" />
           <label htmlFor="email">Email address</label>

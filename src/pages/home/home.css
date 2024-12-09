@@ -1,5 +1,5 @@
 div.hero-img {
-  height: 120vh;
+  min-height: 120vh;
   background: linear-gradient(
       135deg,
       rgba(120, 54, 15, 0.361),
@@ -116,7 +116,7 @@ div.banner {
 
 @media (max-width: 992px) {
   div.hero-img {
-    height: 80vh;
+    min-height: 80vh;
   }
 
   div.blog-container {

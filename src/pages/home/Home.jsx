@@ -9,11 +9,20 @@ import { Blog, Travel } from "../../component/blog/Blog";
 import { Post, PostCon } from "../../component/post/Post";
 import "./home.css";
 import { Link } from "react-router-dom";
+import { useInViewAnimation } from "../../useInViewAnimation";
 
 const Home = () => {
+  const [left, right, top, bottom, opacity] = [
+    useInViewAnimation("elementLeft"),
+    useInViewAnimation("elementRight"),
+    useInViewAnimation("elementTop"),
+    useInViewAnimation("elementBottom"),
+    useInViewAnimation("opacity"),
+  ];
+
   return (
     <>
-      <div className="hero-img">
+      <div className="hero-img" ref={top.ref} style={{ ...top.style }}>
         <div></div>
         <Hero />
         <Links />
@@ -29,10 +38,14 @@ const Home = () => {
               "Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day, going forward, a new normal that has evolved from generation X is on the runway heading towards a streamlined cloud solution."
             }
             linkName="/blog/thirdBlogDetail"
+            motion={"right"}
           />
         </div>
       </div>
-      <div className="banner"></div>
+      <div className="banner"
+      ref={opacity.ref}
+      style={{...opacity.style}}
+      ></div>
       <div className="blog-section section-1">
         <Travel
           title={"We love to travel"}
@@ -42,13 +55,21 @@ const Home = () => {
         />
       </div>
       <div className="travel-container">
-        <Link to="/category/sandybeach">
+        <Link
+          to="/category/sandybeach"
+          ref={right.ref}
+          style={{ ...right.style }}
+        >
           <PostCon img={img2} name={"Sandy Beaches"} />
         </Link>
-        <Link to="/category/foresttrails">
+        <Link to="/category/foresttrails" style={{ zIndex: 99 }}>
           <PostCon img={img3} name={"Forest Trails"} />
         </Link>
-        <Link to="/category/citystreets">
+        <Link
+          to="/category/citystreets"
+          ref={left.ref}
+          style={{ ...left.style }}
+        >
           <PostCon img={img4} name={"City Streets"} />
         </Link>
       </div>
@@ -59,11 +80,11 @@ const Home = () => {
             para={
               "Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition. Organically grow the holistic world view of disruptive innovation via workplace diversity and empowerment."
             }
-            linkName='/blog/secondBlogDetail'
+            linkName="/blog/secondBlogDetail"
           />
         </div>
         <div className="box2">
-          <Post img={img5} linkName="/blog/secondBlogDetail" />
+          <Post img={img5} linkName="/blog/secondBlogDetail" motion={"right"} />
         </div>
       </div>
       <div className="blog-section section-2">

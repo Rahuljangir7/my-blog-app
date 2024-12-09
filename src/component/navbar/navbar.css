@@ -11,6 +11,7 @@
   width: 100%;
   box-sizing: border-box;
   background-color: transparent; /* Default transparent background */
+  z-index: 999;
 }
 
 .navbar h1 {
