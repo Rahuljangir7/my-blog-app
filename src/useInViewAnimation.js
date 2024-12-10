@@ -6,7 +6,7 @@ export const useInViewAnimation = (elementKey, resetOnLeave = true) => {
   const animations = useAnimationContext(); // Get animations from context
   const animationStyles = animations[elementKey] || {}; // Get specific animation by key
 
-  const { ref, inView } = useInView({ threshold: 0.3 }); // Trigger at 50% visibility
+  const { ref, inView } = useInView({ threshold: 0.3 }); // Trigger at 30% visibility
   const [style, setStyle] = useState({
     opacity: 0,
     transform: animationStyles.initial || "translate(0, 0)", // Default initial transform
