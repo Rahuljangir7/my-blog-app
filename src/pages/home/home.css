@@ -116,7 +116,7 @@ div.banner {
 
 @media (max-width: 992px) {
   div.hero-img {
-    min-height: 80vh;
+    min-height: 100vh;
   }
 
   div.blog-container {

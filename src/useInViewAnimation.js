@@ -14,24 +14,24 @@ export const useInViewAnimation = (elementKey, resetOnLeave = true) => {
     transition: animationStyles.transition || "all 0.3s linear",
   });
 
+  const getAnimationStyles = () => {
+    const isMobile = window.innerWidth <= 360;
+    return isMobile
+      ? animationStyles.smallScreen || animationStyles
+      : animationStyles;
+  };
+
   useEffect(() => {
-    // Helper function to get the correct styles based on screen width
-    const getAnimationStyles = () => {
-      const isMobile = window.innerWidth <= 360;
-      return isMobile
-        ? animationStyles.smallScreen || animationStyles
-        : animationStyles;
-    };
+    // Apply animation styles based on inView
+    const currentStyles = getAnimationStyles();
 
     if (inView) {
-      const currentStyles = getAnimationStyles();
       setStyle({
         opacity: 1,
         transform: currentStyles.enter || "translate(0, 0)", // Target transform
         transition: currentStyles.transition || "all 0.3s linear",
       });
     } else if (resetOnLeave) {
-      const currentStyles = getAnimationStyles();
       setStyle({
         opacity: 0,
         transform: currentStyles.initial || "translate(0, 0)", // Reset to initial transform
@@ -43,21 +43,32 @@ export const useInViewAnimation = (elementKey, resetOnLeave = true) => {
   useEffect(() => {
     // Listen to screen resize and adjust animations accordingly
     const handleResize = () => {
-      const currentStyles =
-        window.innerWidth <= 360
-          ? animationStyles.smallScreen || animationStyles
-          : animationStyles;
-      setStyle((prevStyle) => ({
-        ...prevStyle,
-        transform: currentStyles.initial || "translate(0, 0)",
-      }));
+      const currentStyles = getAnimationStyles();
+
+      setStyle({
+        opacity: 0, // Reset opacity
+        transform: currentStyles.initial || "translate(0, 0)", // Reset transform
+        transition: currentStyles.transition || "all 0.3s linear",
+      });
+
+      // Trigger re-render manually by toggling inView
+      setTimeout(() => {
+        if (inView) {
+          setStyle({
+            opacity: 1,
+            transform: currentStyles.enter || "translate(0, 0)",
+            transition: currentStyles.transition || "all 0.3s linear",
+          });
+        }
+      }, 50); // Delay to allow DOM update
     };
 
     window.addEventListener("resize", handleResize);
+
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, [animationStyles]);
+  }, [animationStyles, inView]);
 
   return { ref, style };
 };

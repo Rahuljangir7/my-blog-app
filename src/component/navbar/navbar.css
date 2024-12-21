@@ -75,7 +75,7 @@
   text-underline-offset: 10px;
 }
 
-@media (max-width: 330px) {
+@media (max-width: 360px) {
   .navbar-other-pages,
   .navbar {
     padding: 1rem 10px;
