@@ -3,7 +3,7 @@ import "./about.css";
 import { useInViewAnimation } from "../../useInViewAnimation";
 
 let desc =
-  "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
+  "Welcome to IMPULSE, your go-to destination for exploring insightful, engaging, and dynamic blogs. At IMPULSE, we aim to provide content that inspires, educates, and sparks curiosity in our readers. Our blogs cover a wide range of topics, written with passion and crafted using the latest technology to ensure a seamless browsing experience. Built using React, our platform ensures speed, efficiency, and user-friendly navigation. Whether you're here to learn something new, find inspiration, or simply enjoy a good read, IMPULSE has something for everyone. Dive into our collection and let your journey begin!";
 const About = ({ title = "About Us", des = desc }) => {
   let [left, right] = [
     useInViewAnimation("elementLeft"),

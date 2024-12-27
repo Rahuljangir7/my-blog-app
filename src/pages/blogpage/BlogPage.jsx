@@ -9,7 +9,7 @@ const BlogPage = () => {
     <div className="blogpage">
       <About
         title="The Blog"
-        des="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vel arcu commodo, sodales nibh sed, efficitur sapien."
+        des="At IMPULSE, our blog offers insightful articles on technology, trends, and development. Whether you’re looking for tutorials, the latest tech news, or thought-provoking content, we’ve got something to inspire and inform you."
       />
 
       <div className="blogpage-section">

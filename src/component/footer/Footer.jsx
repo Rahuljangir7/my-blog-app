@@ -53,7 +53,11 @@ const Footer = () => {
             ref={bottom.ref}
             style={{ ...bottom.style }}
           >
-            <FaRegCopyright /> 2021 DESIGN BY NOVOLIO. IMAGES BY UNSPLASH
+            <FaRegCopyright /> 2021 DESIGN BY
+            <strong>
+              <i> Rahul Jangir . </i>
+            </strong>
+            IMAGES BY GALLERY
           </div>
         </div>
       </footer>
